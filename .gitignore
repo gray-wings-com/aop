@@ -1,0 +1,5 @@
+# All
+.env
+
+# Server-side
+vendor/

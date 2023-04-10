@@ -1,0 +1,46 @@
+{
+  "name": "graywings/aop",
+  "type": "library",
+  "license": "MIT",
+  "description": "This is aspect oriented programming library for PHP.",
+  "autoload": {
+    "psr-4": {
+      "GrayWings\\Aop\\": "src/"
+    }
+  },
+  "scripts": {
+    "build:inner": [
+      "@lint:inner"
+    ],
+    "build": [
+      "@lint"
+    ],
+    "lint": [
+      "docker-compose exec app composer lint:inner"
+    ],
+    "lint:inner": [
+      "phpcs",
+      "phpstan analyse src -c phpstan.neon",
+      "phan"
+    ],
+    "post-root-package-install": [
+      "php -r \"file_exists('.env') || copy('env.template', '.env');\""
+    ]
+  },
+  "authors": [
+    {
+      "name": "tterashima",
+      "email": "taira.terashima@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.7",
+    "phpstan/phpstan": "^1.10",
+    "phan/phan": "^5.4"
+  },
+  "config": {
+    "platform": {
+      "php": "8.2.3"
+    }
+  }
+}
